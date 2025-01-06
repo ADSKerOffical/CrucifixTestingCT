@@ -1,0 +1,60 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+
+local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Crucifix Testing", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+ Name = "Get 200 crosses",
+ Callback = function()
+        for i = 1, 200 do
+workspace:WaitForChild("Map"):WaitForChild("Shop"):WaitForChild("FirstShop"):WaitForChild("Pillows"):WaitForChild("CuriousCrucifix"):WaitForChild("Attachment"):WaitForChild("ProximityPrompt"):WaitForChild("Remote"):FireServer()
+        end
+   end    
+})
+
+Tab:AddTextbox({
+ Name = "Get crosses (input)",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+if string.find(Value, "%D") == nil then
+   for i = 1, Value do
+workspace:WaitForChild("Map"):WaitForChild("Shop"):WaitForChild("FirstShop"):WaitForChild("Pillows"):WaitForChild("CuriousCrucifix"):WaitForChild("Attachment"):WaitForChild("ProximityPrompt"):WaitForChild("Remote"):FireServer()
+   end
+ else
+OrionLib:MakeNotification({
+	Name = "Budgie Hub",
+	Content = "Your text should only contain numbers",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+end
+ end   
+})
+
+Tab:AddButton({
+ Name = "Put on all tools",
+ Callback = function()
+       for _, tool in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+         if tool:IsA("Tool") then
+      tool.Parent = game.Players.LocalPlayer.Character
+         end
+       end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Adjust the positions of the tool handles",
+ Callback = function()
+      for _, tool in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+        if tool:IsA("Tool") then
+tool.GripPos = Vector3.new(math.random(-40, 40), math.random(-3, 3), math.random(-40, 40))
+        end
+      end
+   end    
+})
